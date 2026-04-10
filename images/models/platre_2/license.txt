@@ -1,0 +1,11 @@
+Model Information:
+* title:	Plâtre 2
+* source:	https://sketchfab.com/3d-models/platre-2-5014be792e4748878ce6bd47777d0371
+* author:	andrealft (https://sketchfab.com/andrealft)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Plâtre 2" (https://sketchfab.com/3d-models/platre-2-5014be792e4748878ce6bd47777d0371) by andrealft (https://sketchfab.com/andrealft) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

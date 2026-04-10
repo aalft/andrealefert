@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>cellules</title>
+    <meta name="description" content="Découvrez le projet Cellules: deux cahiers, 24 zones dessinées à découvrir.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png?v=3">
+    <meta property="og:title" content="andréa lefert - portfolio">
+    <meta property="og:description" content="CELLULES - Andréa lefert, Graphiste-façonneur en design éditorial.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://andrealefert.netlify.app/images/coloriage3.jpg">
+</head>
+<body>
+
+    <nav class="corner-text top-left">
+        <a href="index.html">← retour</a>
+    </nav>
+    <div class="corner-text top-center">portfolio</div>
+
+    <header class="project-header">
+        <h1>cellules</h1>
+        <p><strong>2026</strong></p>
+        <p>Deux cahiers, 24 zones dessinées <br class="saut-mobile">  à découvrir.</p>
+        <p>Format: 22x31cm</p>
+    </header>
+
+    <main class="grille-container grille-projet">
+        <div class="tuile-projet"><img src="images/coloriage5.jpg" alt="cellules" class="image-cliquable"></div>
+        <div class="tuile-projet"><img src="images/coloriage6.jpg" alt="cellules" class="image-cliquable"></div>
+        <div class="tuile-projet"><img src="images/coloriage1.jpg" alt="cellules" class="image-cliquable"></div>
+        <div class="tuile-projet"><img src="images/coloriage10.jpg" alt="cellules" class="image-cliquable"></div>
+        <div class="tuile-projet"><img src="images/coloriage.jpg" alt="cellules" class="image-cliquable"></div>
+        <div class="tuile-projet"><img src="images/coloriage12.jpg" alt="cellules" class="image-cliquable"></div>
+   
+        <div class="tuile-projet tuile-16-9 pleine-largeur">
+            <video src="videos/coloriages.mp4" autoplay loop muted playsinline ></video>
+        </div>
+   
+    </main>
+    <div id="lightbox" class="lightbox">
+        <span class="croix-fermer">&times;</span>
+        
+        <span class="fleche fleche-gauche" id="fleche-gauche">&#10094;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Image en grand">
+        <span class="fleche fleche-droite" id="fleche-droite">&#10095;</span>
+    </div>
+
+<script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.image-cliquable');
+        const flecheGauche = document.getElementById('fleche-gauche');
+        const flecheDroite = document.getElementById('fleche-droite');
+        
+        let indexActuel = 0; // La mémoire de la galerie !
+
+        // 1. Quand on clique sur une image de la grille
+        images.forEach((img, index) => {
+            img.addEventListener('click', function() {
+                indexActuel = index; // On sauvegarde le numéro de l'image cliquée
+                lightbox.style.display = 'flex'; 
+                lightboxImg.src = this.src;      
+            });
+        });
+
+        // 2. Fonction pour changer l'image (en avant ou en arrière)
+        function changerImage(direction) {
+            indexActuel += direction;
+            
+            // Si on arrive tout à la fin, on boucle et on revient à la première
+            if (indexActuel >= images.length) {
+                indexActuel = 0;
+            } 
+            // Si on recule avant la première, on va à la toute dernière
+            else if (indexActuel < 0) {
+                indexActuel = images.length - 1;
+            }
+            
+            lightboxImg.src = images[indexActuel].src; // On affiche la nouvelle image
+        }
+
+        // 3. Quand on clique sur les flèches
+        flecheGauche.addEventListener('click', function(e) {
+            e.stopPropagation(); // TRÈS IMPORTANT : Empêche le clic de fermer la Lightbox
+            changerImage(-1); // Recule de 1
+        });
+
+        flecheDroite.addEventListener('click', function(e) {
+            e.stopPropagation(); // TRÈS IMPORTANT
+            changerImage(1); // Avance de 1
+        });
+
+        // 4. Fermer la Lightbox
+        lightbox.addEventListener('click', function(e) {
+            // On ferme UNIQUEMENT si on clique sur le fond flou ou la croix (pas sur l'image elle-même)
+            if (e.target === lightbox || e.target.classList.contains('croix-fermer')) {
+                lightbox.style.display = 'none';
+            }
+        });
+        
+        /* =======================================================
+   AMÉLIORATIONS DE LA LIGHTBOX (Clic et Clavier)
+   ======================================================= */
+
+// 1. Fermer la Lightbox en cliquant directement sur l'image
+const imageLightbox = document.querySelector('.lightbox-img');
+const conteneurLightbox = document.querySelector('.lightbox');
+
+if (imageLightbox) {
+    imageLightbox.addEventListener('click', () => {
+        // On cache la lightbox quand on clique sur l'image
+        conteneurLightbox.style.display = 'none';
+    });
+}
+
+// 2. Naviguer avec les flèches du clavier (et Échap pour fermer)
+document.addEventListener('keydown', (event) => {
+    // On vérifie d'abord si la Lightbox est actuellement ouverte
+    const estOuverte = window.getComputedStyle(conteneurLightbox).display !== 'none';
+    
+    if (estOuverte) {
+        // Flèche de droite -> On simule un clic sur ta flèche droite
+        if (event.key === 'ArrowRight') {
+            const flecheDroite = document.querySelector('.fleche-droite');
+            if (flecheDroite) flecheDroite.click();
+        }
+        
+        // Flèche de gauche -> On simule un clic sur ta flèche gauche
+        else if (event.key === 'ArrowLeft') {
+            const flecheGauche = document.querySelector('.fleche-gauche');
+            if (flecheGauche) flecheGauche.click();
+        }
+        
+        // Bonus Pro : Touche "Échap" (Escape) pour fermer la Lightbox
+        else if (event.key === 'Escape') {
+            conteneurLightbox.style.display = 'none';
+        }
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. On liste tous les endroits où on veut appliquer la règle (tes paragraphes, titres, textes de coins, etc.)
+    const elementsTextes = document.querySelectorAll("p, h1, h2, h3, .sous-titre-projet, .texte-categorie, .texte-profil, .corner-text, .project-header");
+
+    // 2. On applique la magie à chaque élément trouvé
+    elementsTextes.forEach(function(element) {
+        if (element.innerHTML) {
+            // L'expression régulière (RegEx) qui cherche les mots de 1 ou 2 lettres (accents inclus) suivis d'un espace
+            // et remplace cet espace par un '&nbsp;' (espace insécable)
+            element.innerHTML = element.innerHTML.replace(/(?<=\s|^|>)([a-zA-ZÀ-ÿ]{1,3})\s+/g, '$1&nbsp;');
+        }
+    });
+});
+    </script>
+    
+</body>
+</html>
