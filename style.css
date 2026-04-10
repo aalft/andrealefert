@@ -1117,17 +1117,16 @@ p, h1, h2, h3, .sous-titre-projet, .texte-categorie, .texte-profil, .corner-text
 body::before {
     content: "";
     position: fixed;
-    top: 0;
+    top: -100px !important; /* On force le rectangle à monter tout en haut, sous l'heure */
     left: 0;
     width: 100%;
-    /* NOUVEAU : 50px + la hauteur dynamique de l'encoche de l'écran */
-    height: calc(50px + env(safe-area-inset-top)); 
+    height: 160px !important; /* Assez grand pour couvrir la zone de l'heure ET ton menu */
     background-color: #f5f4f0; 
     z-index: 9998; 
 }
 
 body.fond-sombre::before {
-    background-color: #2c2c2c;
+    background-color: #2c2c2c !important;
 }
 
 .top-left, .top-center, .top-right {
