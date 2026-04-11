@@ -1,28 +1,26 @@
-/* --- Paramètres de base --- */
 body, html {
     margin: 0;
     padding: 0;
     background-color: #f5f4f0; 
     font-family: 'Cutive Mono', monospace; 
     color: #111;
-    position: relative; /* Le nouveau point de repère ! */
-    min-height: 100vh;  /* S'assure de prendre toute la page */
+    position: relative; 
+    min-height: 100vh; 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 body.fond-sombre {
-    background-color: #2c2c2c; /* Ton nouveau fond */
-    color: #f5f4f0; /* Ton texte devient clair (la couleur de ton fond habituel) */
+    background-color: #2c2c2c; 
+    color: #f5f4f0; 
 }
 
 img, video {
-    max-width: 100%; /* L'image ne sera jamais plus grande que son conteneur */
-    height: auto;    /* Garde les bonnes proportions sans écraser l'image */
-    display: block;  /* Évite les petits espaces fantômes sous les images */
+    max-width: 100%; 
+    height: auto;    
+    display: block; 
 }
 
-/* On n'oublie pas de rendre la croix de la lightbox claire aussi sur cette page ! */
 body.fond-sombre .croix-fermer {
     color: #f5f4f0;
 }
@@ -35,14 +33,12 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Le calque de la Lightbox devient sombre lui aussi sur cette page */
 body.fond-sombre .lightbox {
-    background-color: rgba(44, 44, 44, 0.95); /* Remplace les "44" par les valeurs RGB de la couleur de ton fond sombre ! */
+    background-color: rgba(44, 44, 44, 0.95);
 }
 
-/* --- TEXTES DANS LES COINS --- */
 .corner-text {
-    position: absolute; /* MAGIQUE : le texte n'est plus collé à l'écran ! */
+    position: absolute;
     font-size: 1rem;
     font-weight: bold;
     z-index: 100;
@@ -53,43 +49,35 @@ body.fond-sombre .lightbox {
 .bottom-left { bottom: 30px; left: 30px; }
 
 .bottom-left {
-    font-size: 0.8rem; /* Un peu plus petit que les autres textes pour ne pas voler la vedette */
+    font-size: 0.8rem; 
 }
 
-/* --- GRILLE UNIQUE (Accueil et Projet) --- */
 .grille-container {
-    padding: 80px 30px; /* Espace pour ne pas toucher les textes des coins */
+    padding: 80px 30px;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-    column-gap: 15px; /* Espace entre les images */
-     row-gap: 15px; /* Espace entre les lignes */
+    grid-template-columns: repeat(3, 1fr); 
+    column-gap: 15px; 
+     row-gap: 15px;
 }
 
-/* =======================================================
-   GRILLE DE 4 IMAGES PAYSAGE (2:3)
-   ======================================================= */
-
-/* Le conteneur principal de la grille */
 .grille-4-paysage {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes par défaut */
-    gap: 15px; /* Ton espacement habituel entre les tuiles */
-    padding: 30px 30px; /* Tes marges de 30px, sauf si déjà dans grille-projet */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px;
+    padding: 30px 30px; 
     box-sizing: border-box;
     width: 100%;
 }
 
-/* On force le ratio paysage 2:3 pour chaque tuile */
 .aspect-paysage-2-3 {
-    aspect-ratio: 3 / 2; /* 3 parts de largeur pour 2 parts de hauteur */
+    aspect-ratio: 3 / 2; 
     width: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #ccc; /* Ton petit fond gris de chargement */
+    background-color: #ccc; 
 }
 
-/* S'assure que l'image remplit parfaitement sa boîte */
 .aspect-paysage-2-3 img {
     width: 100%;
     height: 100%;
@@ -97,43 +85,35 @@ body.fond-sombre .lightbox {
     display: block;
 }
 
-/* =======================================================
-   SECTION INSTAGRAM (STORIES & POSTS)
-   ======================================================= */
-
-/* Le conteneur global qui respecte tes marges */
 .section-instagram {
     width: 100%;
-    padding: 30px 30px; /* Tes fameuses marges de 30px */
+    padding: 30px 30px; 
     box-sizing: border-box;
 }
 
-/* --- 1. GRILLE STORIES (3 colonnes) --- */
 .grille-stories {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 parts égales */
-    gap: 15px; /* Ton espace habituel */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px; 
 }
 
 .tuile-story {
     width: 100%;
-    aspect-ratio: 9 / 16; /* Le format exact d'une Story Instagram ! */
+    aspect-ratio: 9 / 16; 
     background-color: #ccc;
     position: relative;
     display: block;
     overflow: hidden;
 }
 
-/* L'indicateur disparait au survol de la story OU du post */
 .tuile-story:hover .indicateur-play,
 .tuile-post:hover .indicateur-play {
     opacity: 0;
 }
 
-/* --- 2. GRILLE POSTS (3 colonnes) --- */
 .grille-posts {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 parts égales */
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px; 
 }
 
@@ -146,103 +126,93 @@ body.fond-sombre .lightbox {
     overflow: hidden;
 }
 
-/* --- COMPORTEMENT DES MÉDIAS (S'applique aux deux grilles) --- */
 .tuile-story img, 
 .tuile-story video,
 .tuile-post img, 
 .tuile-post video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Remplit toute la tuile sans se déformer */
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-
-/* --- BANDEAU 4 COLONNES (Pour les petits formats) --- */
 .bandeau-4-colonnes {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonnes ! */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 15px; 
     padding: 30px 30px 30px 30px; 
     box-sizing: border-box;
 }
 
-/* --- FORMAT CARRÉ (Posts Instagram) --- */
 .tuile-projet.tuile-carre {
     aspect-ratio: 1 / 1; 
 }
-/* --- FORMAT VIDÉO CLASSIQUE (16:9) --- */
+
 .tuile-projet.tuile-16-9 {
     aspect-ratio: 16 / 9; 
 }
-/* --- VIDÉO PLEINE LARGEUR (Prend les 3 colonnes) --- */
+
 .tuile-projet.tuile-16-9.pleine-largeur {
-    grid-column: 1 / -1; /* Le secret absolu en CSS Grid : s'étire de la toute première à la toute dernière colonne */
+    grid-column: 1 / -1; 
 }
 
-/* --- BANDEAU 2 COLONNES (Pour les vidéos Insta) --- */
 .bandeau-2-colonnes {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour tes 2 vidéos */
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px; 
     padding: 30px 30px 30px 30px; 
     box-sizing: border-box;
 }
 
-/* --- SOUS-TITRE DE SECTION (Entre les grilles) --- */
 .sous-titre-projet {
-    padding: 0 30px 0px 30px; /* Aligné parfaitement avec tes grilles (30px sur les côtés) */
+    padding: 0 30px 0px 30px; 
     max-width: 800px;
     box-sizing: border-box;
     line-height: 1.5rem;
 }
 
-/* Modificateur pour la page projet */
 .grille-projet {
-    padding-top: 20px; /* Moins d'espace en haut car le texte y est déjà */
-    padding-bottom: 30px; /* <-- Ajoute cette ligne pour réduire l'espace en bas ! */
+    padding-top: 20px; 
+    padding-bottom: 30px; 
 }
 
-/* --- LES TUILES DE LA GRILLE --- */
 .tuile-projet {
     width: 100%;
     aspect-ratio: 3 / 2;
     display: block;
     overflow: hidden;
     background-color: #ccc;
-    position: relative; /* Indispensable pour l'étiquette */
-    text-decoration: none !important; /* Empêche le soulignement moche au survol */
+    position: relative; 
+    text-decoration: none !important; 
 }
-/* Le scan 3D prend les 3 colonnes */
+
 .tuile-projet.pleine-largeur {
-    grid-column: 1 / -1; /* S'étire de la colonne 1 à la fin */
-    aspect-ratio: 16 / 9; /* Un format plus panoramique pour le grand scan */
+    grid-column: 1 / -1; 
+    aspect-ratio: 16 / 9;
 }
 
 .tuile-projet img,
 .tuile-projet video,
-.tuile-projet iframe, /* Pour Sketchfab ou autres intégrations */
-model-viewer {        /* Pour tes propres fichiers 3D natifs */
+.tuile-projet iframe, 
+model-viewer {        
     width: 100%;
     height: 100%;
     object-fit: cover; 
     display: block;
-    border: none; /* Indispensable pour masquer le contour noir par défaut des iframes */
+    border: none; 
     background-color: rgb(0, 0, 0);
 }
 
-/* --- FORMAT AFFICHE (Portrait A3/A4) --- */
 .tuile-portrait {
     aspect-ratio: 1 / 1.414; 
 }
-/* --- OPTION SANS BORDURE --- */
+
 .tuile-projet.sans-bordure {
-    border: none; /* Supprime le contour */
+    border: none; 
 }
 
-/* --- L'ÉTIQUETTE AU SURVOL --- */
 .titre-survol {
     position: absolute;
     top: 50%;
@@ -256,39 +226,36 @@ model-viewer {        /* Pour tes propres fichiers 3D natifs */
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 10;
-    white-space: nowrap; /* Force le texte à rester sur une seule ligne */
+    white-space: nowrap; 
 }
 
 .tuile-projet:hover .titre-survol {
     opacity: 1;
 }
 
-/* --- INDICATEUR VIDÉO (Disparaît au survol) --- */
 .indicateur-play {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(245, 244, 240, 0.9); /* La couleur de ton fond de site, un peu transparente */
+    background-color: rgba(245, 244, 240, 0.9);
     color: #111;
     padding: 8px 16px;
     font-size: 1rem;
     font-weight: bold;
     z-index: 10;
     transition: opacity 0.3s ease;
-    pointer-events: none; /* LE SECRET : Empêche le bouton de bloquer la détection de la souris pour la vidéo ! */
+    pointer-events: none; 
     white-space: nowrap;
 }
 
-/* Quand on survole la boîte du projet, l'indicateur s'efface */
 .tuile-projet:hover .indicateur-play {
     opacity: 0;
 }
 
-/* --- EN-TÊTE PAGE PROJET (Texte au-dessus des images) --- */
 .project-header {
-    padding: 80px 60px 0 30px; /* S'aligne parfaitement avec les marges de la grille */
-    max-width: 800px; /* Pour éviter que les lignes de texte soient trop longues à lire */
+    padding: 80px 60px 0 30px; 
+    max-width: 800px; 
 }
 
 .project-header h1 {
@@ -303,115 +270,104 @@ model-viewer {        /* Pour tes propres fichiers 3D natifs */
     margin-bottom: 0.2rem;
 }
 
-/* --- MODE PLEIN ÉCRAN (LIGHTBOX) --- */
-
-/* Le curseur change au survol des images pour inviter au clic */
 .image-cliquable {
     cursor: zoom-in;
 }
 
-/* Le grand calque de fond */
 .lightbox {
-    display: none; /* Invisible par défaut */
+    display: none; 
     position: fixed;
-    z-index: 9999; /* Par-dessus TOUT le reste */
+    z-index: 9999; 
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(245, 244, 240, 0.95); /* La couleur de ton fond, légèrement transparente ! */
+    background-color: rgba(245, 244, 240, 0.95); 
     justify-content: center;
     align-items: center;
-    cursor: zoom-out; /* Curseur pour montrer qu'on peut cliquer pour fermer */
+    cursor: zoom-out; 
 }
 
-/* L'image en grand */
 .lightbox-img {
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Petite ombre élégante */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* La petite croix */
+
 .croix-fermer {
     position: absolute;
     top: 30px;
     right: 40px;
-    font-size: 3rem; /* Assez grande pour être vue */
+    font-size: 3rem; 
     font-family: 'Cutive Mono', monospace;
     color: #111;
     cursor: pointer;
     line-height: 0.5;
 }
-/* --- LES FLÈCHES DE NAVIGATION --- */
+
 .fleche {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.5rem;
-    color: #111; /* Couleur noire par défaut */
+    color: #111; 
     cursor: pointer;
     padding: 20px;
-    user-select: none; /* Empêche de sélectionner le texte de la flèche en cliquant vite */
+    user-select: none; 
     transition: color 0.3s ease;
 }
 
 .fleche:hover {
-    color: #888; /* S'éclaircit un peu au survol */
+    color: #888; 
 }
 
 .fleche-gauche { left: 20px; }
 .fleche-droite { right: 20px; }
 
-/* Adaptation pour tes pages avec un fond sombre */
 body.fond-sombre .fleche {
-    color: #f5f4f0; /* Les flèches deviennent claires ! */
+    color: #f5f4f0; 
 }
-
-/* --- GALERIE MIXTE : VIDÉO GAUCHE / IMAGES DROITE --- */
 
 .galerie-mixte {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 30px;
     margin: 30px 30px;
-    align-items: stretch; /* Oblige la colonne de droite à copier la hauteur de celle de gauche */
+    align-items: stretch;
 }
 
-/* --- La vidéo à gauche (C'EST ELLE LA CHEFFE MAINTENANT) --- */
 .bloc-gauche-video {
     width: 100%;
-    aspect-ratio: 9 / 16; /* Assure-toi que c'est bien le vrai format de ta vidéo */
+    aspect-ratio: 9 / 16; 
 }
 
 .bloc-gauche-video video {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* La vidéo s'affiche en entier, 0 rognage */
+    object-fit: contain; 
     display: block;
 }
 
-/* --- Les images à droite --- */
 .bloc-droite-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr; /* Oblige les 2 lignes d'images à prendre exactement 50% de la hauteur dispo */
-    gap: 15px; /* Tes 15px stricts */
-    height: 100%; /* Remplit toute la hauteur imposée par la vidéo */
+    grid-template-rows: 1fr 1fr; 
+    gap: 15px; 
+    height: 100%; 
 }
 
 .bloc-droite-images img {
     width: 100%;
-    height: 100%; /* L'image remplit sa case */
-    object-fit: cover; /* LE COMPROMIS : rogne un peu l'image pour que tout soit parfaitement aligné */
+    height: 100%;
+    object-fit: cover; 
     display: block;
 }
 
-/* --- BANDEAU ASYMÉTRIQUE (1 Tiers / 2 Tiers) --- */
 .bandeau-asymetrique {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* 1 part à gauche, 2 parts à droite */
+    grid-template-columns: 1fr 2fr; 
     gap: 15px;
     padding: 20px 30px 40px 30px; 
     box-sizing: border-box;
@@ -425,14 +381,14 @@ body.fond-sombre .fleche {
 }
 
 .bloc-geant {
-    aspect-ratio: 3 / 2; /* Donne à la vidéo la proportion exacte d'un bloc de 4 tuiles ! */
+    aspect-ratio: 3 / 2; 
 }
 
 .bloc-vertical {
-    height: 100%; /* Demande à l'image de s'aligner parfaitement sur la hauteur de la vidéo */
+    height: 100%; 
 }
 
-/* On s'assure que le contenu remplit parfaitement les boîtes sans se déformer */
+
 .bandeau-asymetrique img, 
 .bandeau-asymetrique video {
     width: 100%;
@@ -443,9 +399,6 @@ body.fond-sombre .fleche {
     left: 0;
 }
 
-/* =======================================================
-   PAGE À PROPOS
-   ======================================================= */
    .conteneur-a-propos {
     min-height: 100vh; 
     display: flex;
@@ -457,8 +410,8 @@ body.fond-sombre .fleche {
 
 .grille-a-propos {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colonnes : photo et texte */
-    gap: 60px; /* Bel espace entre la photo et le texte */
+    grid-template-columns: 1fr 1fr; 
+    gap: 60px;
     max-width: 900px; 
     width: 100%;
     align-items: center; 
@@ -466,7 +419,7 @@ body.fond-sombre .fleche {
 
 .image-profil img {
     width: 100%;
-    aspect-ratio: 3 / 2; /* Format portrait */
+    aspect-ratio: 3 / 2;
     object-fit: cover;
 }
 
@@ -489,76 +442,61 @@ body.fond-sombre .fleche {
     margin-top: 0;
 }
 
-/* --- GESTION DES RETOURS À LA LIGNE --- */
-
-/* Par défaut (sur ordinateur), on cache les sauts réservés au mobile */
 .saut-mobile {
     display: none;
 }
 
 
-
-
-/* --- BLOC TEXTE DÉROULANT (FOND CLAIR) --- */
 .bloc-deroulant {
     margin-top: 15px;
 }
 
-/* Le texte "Lire la suite..." */
+
 .bouton-lire-suite {
     display: inline-block;
     cursor: pointer;
-    font-style: italic; /* Touche éditoriale élégante */
-    color: #666666; /* Gris foncé et doux pour ne pas voler la vedette à l'intro */
+    font-style: italic;
+    color: #666666; 
     text-decoration: underline;
-    text-underline-offset: 4px; /* Décolle un peu le soulignement du texte */
+    text-underline-offset: 4px; 
     margin-top: 5px;
     margin-bottom: 20px;
     transition: color 0.3s ease;
 }
 
-/* L'effet au survol */
 .bouton-lire-suite:hover {
-    color: #000000; /* Devient noir pur pour inciter au clic */
+    color: #000000; 
 }
 
-/* Pour cacher la petite flèche noire par défaut des navigateurs */
 .bouton-lire-suite::marker,
 .bouton-lire-suite::-webkit-details-marker {
     display: none;
     content: "";
 }
 
-/* Le texte qui se dévoile */
 .contenu-cache {
-    color: #000000; /* Texte principal en noir */
-    line-height: 1.6; /* Un bel interlignage pour faciliter la lecture */
+    color: #000000; 
+    line-height: 1.6; 
     padding-bottom: 20px;
 }
 
 .contenu-cache p {
-    margin-bottom: 15px; /* Espace entre les paragraphes cachés */
+    margin-bottom: 15px; 
 }
 
-/* --- GESTION DU TEXTE LIRE LA SUITE / RÉDUIRE --- */
 
-/* Par défaut, on cache le mot "Réduire" */
 .texte-reduire {
     display: none;
 }
 
-/* QUAND LE BLOC EST OUVERT (magie du HTML5) : */
-/* 1. On cache le mot "Lire la suite..." */
 details[open] .texte-lire {
     display: none;
 }
 
-/* 2. On affiche le mot "Réduire le texte" à la place */
 details[open] .texte-reduire {
     display: inline;
 }
 
-/* (Rappel pour enlever la flèche par défaut si tu ne l'avais pas déjà mis) */
 summary {
     list-style: none;
 }
@@ -566,48 +504,43 @@ summary::-webkit-details-marker {
     display: none;
 }
 
-
-/* --- LE MENU DE NAVIGATION DES RECHERCHES --- */
 .menu-filtres {
     display: flex;
-    flex-wrap: wrap; /* Le secret est ici : permet le passage à la ligne naturel sur petit écran */
-    gap: 15px; /* Espace net entre chaque bouton */
+    flex-wrap: wrap; 
+    gap: 15px;
     margin-top: 20px;
     margin-bottom: 40px; 
-    justify-content: flex-start; /* Aligne tout à gauche, sous ton texte */
-    padding: 0 30px; /* Aligne avec les marges de tes grilles */    
+    justify-content: flex-start; 
+    padding: 0 30px;
 }
 
-/* Le design type "bouton" adapté à ton fond clair */
 a.bouton-filtre {
     display: inline-block;
     font-size: 14px;
     font-family: inherit;
-    color: #111; /* Ton gris/noir de base */
+    color: #111; 
     background-color: transparent;
-    border: 0.5px solid #111; /* Contour fin assorti au texte */
+    border: 0.5px solid #111; 
     padding: 8px 16px; 
-    white-space: nowrap; /* Empêche le texte *à l'intérieur* d'un bouton de se casser en deux */
+    white-space: nowrap; 
     text-decoration: none; 
     cursor: pointer;
 
 }
 
-/* L'effet inversé au survol de la souris ET quand la catégorie est active */
 .bouton-filtre:hover,
 .bouton-filtre:active,
 .bouton-filtre.actif {
-    background-color: #111 !important; /* Force le fond sombre */
-    color: #f5f4f0 !important; /* Force le texte clair */
+    background-color: #111 !important;
+    color: #f5f4f0 !important; 
     text-decoration: none;
 }
 
-/* --- TEXTE SPÉCIFIQUE DES CATÉGORIES --- */
 .texte-categorie {
     margin-top: 30px;
     margin-bottom: 10px;
-    padding: 0 30px; /* Aligne avec les marges de tes grilles */    
-    max-width: 800px; /* Pour éviter que les lignes soient trop longues à lire */
+    padding: 0 30px; 
+    max-width: 800px;
 }
 
 .texte-categorie p {
@@ -615,129 +548,101 @@ a.bouton-filtre {
     line-height: 1.5rem;
 }
 
-
-/* --- BANDEAU 1 SEULE IMAGE PLEINE LARGEUR --- */
 .bandeau-1-image {
     width: 100%;
-    padding: 30px 30px 30px 30px; /* MAGIE : Les fameux 30px de marge à gauche et à droite ! */
-    box-sizing: border-box; /* Indispensable pour que le padding ne fasse pas déborder la boîte */
-}
-
-.bandeau-1-image img {
-    width: 100%; /* L'image prend toute la place à l'intérieur de sa boîte (donc jusqu'aux marges) */
-    height: auto; /* Garde les vraies proportions de ton image */
-    display: block; /* Supprime le micro-espace vide sous les images */
-    background-color: #ccc; /* Petit fond gris le temps que l'image charge, comme tes autres tuiles */
-}
-
-/* --- BANDEAU 2 VIDÉOS 3:2 CÔTE À CÔTE --- */
-.bandeau-2-videos-3-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes égales */
-    gap: 15px; /* Espace habituel entre tes tuiles */
-    
-    /* Respect scrupuleux de ta règle d'or des 30px de marge */
-    padding: 30px 30px; 
-    margin-bottom: 30px; /* Bel espace sous la section pour respirer */
+    padding: 30px 30px 30px 30px;
     box-sizing: border-box;
 }
 
-/* Modificateur spécifique pour fixer la proportion au format 3:2 (ex: 3000px x 2000px) */
-.tuile-projet.tuile-3-2 {
-    aspect-ratio: 3 / 2; /* Format photo classique, plus haut que le 16:9 */
+.bandeau-1-image img {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    background-color: #ccc; 
 }
 
+.bandeau-2-videos-3-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; 
+    padding: 30px 30px; 
+    margin-bottom: 30px; 
+    box-sizing: border-box;
+}
 
-/* =======================================================
-   SECTION : 4 VIDÉOS + 6 IMAGES (SANS MARGE AU MILIEU)
-   ======================================================= */
+.tuile-projet.tuile-3-2 {
+    aspect-ratio: 3 / 2;
+}
 
-   .section-frottages {
+.section-frottages {
     display: flex; 
     flex-direction: column;
     width: 100%;
-    padding: 30px 30px; /* Tes 30px de marge sur les côtés */
+    padding: 30px 30px; 
     box-sizing: border-box;
 }
 
 .grille-videos-frottages {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour les vidéos */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 15px; 
-    margin-bottom: 15px; /* L'espacement EXACT entre les vidéos et les images */
+    margin-bottom: 15px; 
 }
 
 .grille-images-frottages {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour les images */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 15px;
 }
 
-
-/* --- UNIFICATION DES ESPACES VERTICAUX (ORDI & MOBILE) --- */
-
-/* On supprime les marges fantômes des paragraphes */
 .sous-titre-projet p, .texte-categorie p {
     margin-top: 0;
-    margin-bottom: 15px; /* Petit espace entre deux paragraphes s'il y en a plusieurs */
+    margin-bottom: 15px; 
 }
 
-/* Le tout dernier paragraphe ne doit pas avoir de marge en dessous, 
-   c'est la "boîte" générale qui gère l'espace avec les images */
 .sous-titre-projet p:last-child, .texte-categorie p:last-child {
     margin-bottom: 0; 
 }
 
-/* On définit un espace fixe au-dessus et en-dessous de tous tes textes intercalaires */
 .sous-titre-projet, .texte-categorie {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-/* --- Style spécifique pour l'image de recherche panoramique --- */
 
-/* La tuile s'étire de la colonne 1 à la dernière (-1) */
 .grille-projet .tuile-panoramique {
     grid-column: 1 / -1; 
     
-    /* On laisse le ratio d'image naturel (panoramique) pour ne pas la déformer */
+   
     aspect-ratio: auto; 
     
-    background-color: transparent; /* Pas de fond gris, on montre le fond de la page */
+    background-color: transparent; 
 }
 
-/* On force l'image à remplir la largeur de la tuile */
+
 .tuile-panoramique img {
     width: 100%;
     height: auto;
-    object-fit: contain; /* S'assure de voir toute l'image sans coupe */
-    display: block; /* Supprime l'espace vide sous l'image */
+    object-fit: contain; 
+    display: block;
 }
 
-/* =======================================================
-   BANDEAU MIXTE : PORTRAIT (2:3) + PAYSAGE (3:2)
-   ======================================================= */
-
-   .bandeau-mixte {
+.bandeau-mixte {
     display: grid;
-    /* LE SECRET MAGIQUE : 4 parts pour le portrait, 9 parts pour le paysage. 
-       C'est ce qui garantit qu'elles auront exactement la même hauteur ! */
     grid-template-columns: 4fr 9fr; 
-    gap: 15px; /* Ton espacement habituel entre les tuiles */
-    padding: 30px 30px; /* Tes marges officielles */
+    gap: 15px; 
+    padding: 30px 30px; 
     box-sizing: border-box;
     width: 100%;
 }
 
-/* Le conteneur de chaque image */
 .tuile-ratio {
     width: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #ccc; /* Ton petit fond gris de chargement */
+    background-color: #ccc; 
 }
 
-/* On force le ratio exact pour chaque tuile */
 .tuile-ratio.format-2-3 {
     aspect-ratio: 2 / 3;
 }
@@ -746,7 +651,6 @@ a.bouton-filtre {
     aspect-ratio: 3 / 2;
 }
 
-/* On s'assure que l'image remplit parfaitement sa boîte sans se déformer */
 .tuile-ratio img {
     width: 100%;
     height: 100%;
@@ -754,21 +658,15 @@ a.bouton-filtre {
     display: block;
 }
 
-/* --- ANIMATION DE DÉFILEMENT --- */
 html {
-    scroll-behavior: smooth; /* La magie opère ici : le retour en haut se fera en glissant ! */
+    scroll-behavior: smooth; 
 }
 
-/* --- BOUTON RETOUR EN HAUT (CACHÉ SUR ORDINATEUR) --- */
 .bouton-retour-haut {
     display: none !important; 
     
 }
 
-
-/* =======================================================
-   BOUTON CV (PAGE CLAIRE & CENTRÉ)
-   ======================================================= */
    .conteneur-cv {
     text-align: left; 
     margin-top: 10px;
@@ -782,7 +680,6 @@ html {
     color: #111 !important; 
     background-color: transparent;
     border: 0.5px solid #111;
-    /* --- SUPPRESSION DU SOULIGNEMENT --- */
     text-decoration: none !important; 
     cursor: pointer;
     transition: all 0.3s ease;
@@ -792,7 +689,7 @@ html {
     .bouton-cv:hover {
         background-color: #111 !important;
         color: #f5f4f0 !important;
-        text-decoration: none !important; /* Sécurité anti-soulignement */
+        text-decoration: none !important;
     }
 }
 
@@ -803,16 +700,12 @@ html {
     text-decoration: none !important;
 }
 
-/* Effet au clic (Flash instantané pour mobile/tablette) */
 .bouton-cv:active {
     background-color: #111;
     color: #f5f4f0;
     transition: none; 
 }
 
-/* =======================================================
-   BOUTON PDF (PAGE SOMBRE & FERRÉ À GAUCHE)
-   ======================================================= */
    .conteneur-pdf {
     text-align: left; 
     margin-top: 30px;
@@ -826,7 +719,6 @@ html {
     color: #f5f4f0 !important; 
     background-color: transparent;
     border: 0.5px solid #f5f4f0;
-    /* --- SUPPRESSION DU SOULIGNEMENT --- */
     text-decoration: none !important; 
     cursor: pointer;
     transition: all 0.3s ease;
@@ -836,7 +728,7 @@ html {
     .bouton-pdf:hover {
         background-color: #f5f4f0 !important;
         color: #111 !important;
-        text-decoration: none !important; /* Sécurité anti-soulignement */
+        text-decoration: none !important;
     }
 }
 
@@ -847,26 +739,8 @@ html {
     text-decoration: none !important;
 }
 
+@media (max-width: 1024px) { 
 
-
-
-
-
-
-
-
-
-
- 
-
-
-/* =======================================================
-   CORRECTION FINALE : ALIGNEMENT 30PX PARTOUT
-   ======================================================= */
-
-@media (max-width: 1024px) { /* On englobe tablettes et téléphones */
-
-    /* 1. On force tous les conteneurs à avoir 30px de padding sur les côtés */
     .project-header, 
     .project-footer-text, 
     .sous-titre-projet, 
@@ -881,7 +755,7 @@ html {
     .section-instagram 
     .grille-4-paysage
     .bandeau-mixte {
-        max-width: 100% !important; /* On libère la largeur pour toucher les marges */
+        max-width: 100% !important; 
         padding-left: 30px !important;
         padding-right: 30px !important;
         margin-left: 0 !important;
@@ -889,35 +763,31 @@ html {
         box-sizing: border-box !important;
     }
     
-    /* On cache les sauts de l'ordi sur les petits écrans */
     .saut-ordi {
         display: none !important;
     }
 
-    /* On active (rend visibles) les sauts spécifiques au mobile */
     .saut-mobile {
         display: inline !important;
     }
 
-    /* 2. On aligne les textes des coins (retour / portfolio) */
     .top-left, .bottom-left { left: 30px !important; }
     .top-right { right: 30px !important; }
 
-    /* 3. On ajuste les grilles pour qu'elles ne soient pas trop écrasées */
     .grille-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+        grid-template-columns: repeat(2, 1fr); 
         gap: 15px;
     }
 
     .menu-filtres {
         display: flex;
-        flex-wrap: wrap; /* Les boutons passent à la ligne si besoin */
+        flex-wrap: wrap; 
         gap: 10px;
     }
 }
 
 @media (max-width: 600px) {
-    /* 1. NOUVEAU : On réduit TOUTES les marges latérales à 15px */
+
     .project-header, 
     .project-footer-text, 
     .sous-titre-projet, 
@@ -936,23 +806,19 @@ html {
         padding-right: 15px !important;
     }
 
-    /* 1.5. On réduit l'espace vide en haut sous le nom/menu */
     .grille-container,
     .project-header,
     .conteneur-a-propos {
-        padding-top: 50px !important; /* Au lieu des 80px de l'ordinateur */
+        padding-top: 50px !important; 
         padding-bottom: 40px !important;
     }
 
-    /* 2. NOUVEAU : On rapproche aussi les textes des coins du bord */
     .top-left, .bottom-left { left: 15px !important; }
     .top-right { right: 15px !important; }
     
-    /* On rapproche aussi un peu du haut et du bas pour gagner de la place */
     .top-left, .top-center, .top-right { top: 15px !important; } 
     .bottom-left { bottom: 15px !important; }
 
-    /* 3. On empile TOUTES les grilles sur 1 seule colonne verticale */
     .grille-container,
     .bandeau-4-colonnes,
     .bandeau-2-colonnes,
@@ -967,37 +833,33 @@ html {
         grid-template-columns: 1fr !important;
     }
     
-    /* 4. On réduit un peu la taille du titre principal */
     .project-header h1 {
         font-size: 1.5rem;
     }
 
-    /* 5. On masque le bouton lecture sur mobile (vidéos automatiques) */
     .indicateur-play {
         display: none !important;
     }
 
-    /* 6. On désactive la lightbox sur mobile (trop complexe au doigt) */
     .image-cliquable {
         pointer-events: none !important; 
         cursor: default !important; 
     }
-    /* 7. On réduit la taille des textes des coins pour l'élégance */
+
     .corner-text {
-        font-size: 0.8rem !important; /* Beaucoup plus fin et discret (environ 13px) */
+        font-size: 0.8rem !important; 
     }
 
-    /* On limite la largeur du texte de gauche pour éviter qu'il ne rentre dans "contact" si l'écran est très petit */
     .top-left {
         max-width: 65%; 
-        line-height: 1.4; /* S'il doit passer sur 2 lignes, ce sera propre */
+        line-height: 1.4; 
     }
-    /* 8. CORRECTION : On redonne une hauteur à l'image du bandeau asymétrique sur mobile */
+
     .bloc-vertical {
-        height: auto !important; /* Annule la hauteur calquée sur la vidéo */
-        aspect-ratio: 2 / 3; /* Donne une jolie proportion "portrait" à ton image */
+        height: auto !important; 
+        aspect-ratio: 2 / 3;
     }
-   /* 9. On réduit drastiquement l'espace entre le texte d'intro et la 1ère grille */
+
    .project-header {
     margin-bottom: 20px !important; 
     padding-bottom: 0 !important;
@@ -1007,14 +869,12 @@ html {
     margin-bottom: 0 !important; 
 }
 
-/* On annule totalement les paddings verticaux de la 1ère grille sur mobile */
 .grille-projet {
     margin-top: 0 !important;
     padding-top: 0 !important; 
-    padding-bottom: 0 !important; /* Retire l'espace de 30px en dessous */
+    padding-bottom: 0 !important;
 }
 
-/* 11. On empêche les bandeaux d'additionner leurs 30px invisibles avec les textes */
 .sous-titre-projet {
     margin-top: 20px !important;
     margin-bottom: 20px !important;
@@ -1025,65 +885,60 @@ html {
 .bandeau-asymetrique,
 .bandeau-mixte,
 .bandeau-1-image,
-.bandeau-2-videos-3-2,  /* <-- J'ai ajouté celui-ci ! */
-.section-frottages,     /* <-- Virgule ajoutée */
-.grille-4-paysage,      /* <-- Virgule ajoutée */
+.bandeau-2-videos-3-2,  
+.section-frottages,    
+.grille-4-paysage,     
 .section-instagram {
     margin-top: 0 !important;
     padding-top: 0 !important;    
     padding-bottom: 0 !important; 
 }
 
-/* 12. On redonne un espace de respiration à la toute fin de la page sur mobile */
 body {
     padding-bottom: 30px !important;
 }
-/* 13. CORRECTION GALERIE MIXTE (Page Apocalypse) */
+
 .galerie-mixte {
-    margin: 0 !important; /* On annule les grosses marges de l'ordinateur qui font déborder */
-    padding-left: 15px !important; /* On applique tes marges parfaites de 15px */
+    margin: 0 !important; 
+    padding-left: 15px !important; 
     padding-right: 15px !important;
     box-sizing: border-box !important;
-    gap: 15px !important; /* Réduit l'espace vertical entre la vidéo et les images */
+    gap: 15px !important; 
 }
 
 .bloc-droite-images {
-    grid-template-columns: 1fr !important; /* Casse la grille pour empiler les 4 images une par une */
-    gap: 15px !important; /* Assure un bel espace entre chaque image empilée */
+    grid-template-columns: 1fr !important; 
+    gap: 15px !important; 
 }
 
 .bloc-droite-images {
-    grid-template-columns: 1fr !important; /* Casse la grille pour empiler les 4 images une par une */
-    gap: 15px !important; /* Assure un bel espace entre chaque image empilée */
+    grid-template-columns: 1fr !important; 
+    gap: 15px !important; 
 }
 
-/* LA SOLUTION EST ICI : on écrase le format "ordinateur" sur mobile */
+
 .bloc-droite-images img {
-    aspect-ratio: auto !important; /* Annule le format horizontal forcé de l'ordinateur */
-    width: 100% !important; /* L'image prend toute la largeur dispo */
-    height: auto !important; /* La hauteur s'adapte naturellement sans couper */
-    object-fit: contain !important; /* Sécurité maximale anti-rognage */
+    aspect-ratio: auto !important; 
+    width: 100% !important; 
+    height: auto !important; 
+    object-fit: contain !important; 
 }
 
-
-/* 14. CORRECTION PAGE À PROPOS */
 .grille-a-propos {
-    gap: 30px !important; /* Réduit l'espace géant entre le dessin et le texte */
+    gap: 30px !important; 
 }
 
 .texte-profil h1 {
-    margin-top: 10px !important; /* Réduit l'espace au-dessus du titre pour le rapprocher du dessin */
-    font-size: 1.4rem !important; /* Réduit un peu le grand titre pour l'élégance */
+    margin-top: 10px !important; 
+    font-size: 1.4rem !important;
     margin-bottom: 15px !important;
-    text-align: center; /* Centre le titre sur mobile pour un look plus équilibré */
+    text-align: center; 
 }
 
 .texte-profil p {
-    text-align: center; /* Justifie le texte pour un rendu plus propre sur mobile */
+    text-align: center; 
 }
 
-/* Optionnel : si ton petit lutin bleu devient trop grand en prenant toute la largeur, 
-   cette règle va le garder à une taille raisonnable et le centrer ! */
 .image-profil {
     text-align: center;
 }
@@ -1092,35 +947,31 @@ body {
     width: 60% !important; 
     height: auto !important;
     aspect-ratio: auto !important; 
-    display: block !important; /* Force l'image à agir comme un bloc */
-    margin: 0 auto !important; /* Répartit l'espace vide à gauche et à droite = centrage parfait */
+    display: block !important;
+    margin: 0 auto !important; 
 }
 
-/* 15. RÉDUCTION DE L'INTERLIGNAGE GLOBAL SUR MOBILE */
 p, h1, h2, h3, .sous-titre-projet, .texte-categorie, .texte-profil, .corner-text {
-    line-height: 1.3 !important; /* Force un interlignage plus resserré */
+    line-height: 1.3 !important; 
 }
-/* Agrandir la zone tactile des liens dans les coins */
+
 .corner-text a {
     padding: 15px !important; 
-    margin: -15px !important; /* Compense le padding pour que le texte reste visuellement aligné à 15px du bord */
+    margin: -15px !important;
     display: inline-block;
 }
-/* Garder le menu toujours visible à l'écran */
+
 .top-left, .top-right, .top-center {
-    position: fixed !important; /* Remplace le "absolute" */
-    z-index: 9999 !important; /* S'assure qu'il passe par-dessus toutes tes vidéos et images */
+    position: fixed !important; 
+    z-index: 9999 !important; 
 }
 
-/* 16. BARRE DE NAVIGATION FIXE PLEINE LARGEUR (MOBILE) */
-    
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* NOUVEAU : 50px + la hauteur dynamique de l'encoche de l'écran */
     height: calc(50px + env(safe-area-inset-top)); 
     background-color: #f5f4f0; 
     z-index: 9998; 
@@ -1133,7 +984,6 @@ body.fond-sombre::before {
 .top-left, .top-center, .top-right {
     position: fixed !important;
     z-index: 9999 !important; 
-    /* NOUVEAU : 15px + la hauteur de l'encoche pour que ton texte ne soit pas caché sous l'heure */
     top: calc(15px + env(safe-area-inset-top)) !important; 
 }
 
@@ -1142,29 +992,19 @@ body.fond-sombre::before {
     margin: -10px !important; 
     display: inline-block;
 }
-
-    /* On agrandit juste la zone de clic pour les gros doigts, sans couleur de fond */
-    .corner-text a {
-        padding: 10px !important; 
-        margin: -10px !important; 
-        display: inline-block;
-    }
-    
-/* --- BOUTON RETOUR EN HAUT : LE POINÇON (MOBILE) --- */
+ 
 .bouton-retour-haut {
     display: flex !important; 
     justify-content: center !important; 
     align-items: center !important; 
     
     position: fixed !important;
-    bottom: 50px !important; /* Tu peux ajuster cette valeur pour le monter/descendre */
+    bottom: 50px !important; 
     
-    /* --- LA MAGIE DU CENTRAGE ABSOLU --- */
-    left: 50% !important; /* Pousse le bord gauche du bouton au milieu de l'écran */
-    transform: translateX(-50%) !important; /* Recule le bouton de la moitié de sa propre taille pour le centrer parfaitement */
-    right: auto !important; /* Indispensable : annule ton ancien réglage qui le collait à droite */
+    left: 50% !important; 
+    transform: translateX(-50%) !important; 
+    right: auto !important; 
     
-    /* La magie du cercle parfait */
     width: 40px !important;
     height: 40px !important;
     border-radius: 50% !important; 
@@ -1174,24 +1014,21 @@ body.fond-sombre::before {
     text-decoration: none !important;
     z-index: 9998 !important;
     
-    /* Couleurs */
     background-color: #f5f4f0 !important; 
     color: #111 !important;
     border: 0.5px solid #111 !important; 
 }
 
-/* Ajustement du colophon sur mobile */
     .colophon {
         margin-top: 40px !important;
-        text-align: left !important; /* Reste aligné à gauche, pas de centrage ! */
-        font-size: 0.8rem !important; /* Même taille réduite que ton footer sur mobile */
+        text-align: left !important; 
+        font-size: 0.8rem !important;
     }
     .conteneur-cv {
         text-align: center !important;
-        margin-top: 20px !important; /* On réduit un peu l'espace sur petit écran */
+        margin-top: 20px !important; 
     }
-
-/* --- AJUSTEMENTS INSTAGRAM POUR MOBILE --- */
+   
 .section-instagram {
     padding-left: 15px !important;
     padding-right: 15px !important;
@@ -1201,19 +1038,17 @@ body.fond-sombre::before {
 
 .grille-stories,
 .grille-posts {
-    grid-template-columns: 1fr !important; /* Empile tout verticalement */
+    grid-template-columns: 1fr !important;
     gap: 15px !important;
 }
 
 .grille-4-paysage {
-        grid-template-columns: 1fr !important; /* Empile tout verticalement */
-        padding-left: 15px !important; /* Tes marges mobile parfaites */
+        grid-template-columns: 1fr !important;
+        padding-left: 15px !important; 
         padding-right: 15px !important;
         gap: 15px !important;
     }
 
-
-/* 17. RÉDUCTION GLOBALE VIA LA RACINE (Tout reste en REM !) */
 html {
     font-size: 14px !important; 
 }
